@@ -10,7 +10,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/erikdubbelboer/fasthttp"
+	"github.com/godofdream/fasthttp"
 )
 
 var domains = make(map[string]fasthttp.RequestHandler)

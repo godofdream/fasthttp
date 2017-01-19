@@ -1300,7 +1300,7 @@ func TestRequestReadChunked(t *testing.T) {
 	verifyTrailer(t, rb, "trail")
 }
 
-// See: https://github.com/erikdubbelboer/fasthttp/issues/34
+// See: https://github.com/godofdream/fasthttp/issues/34
 func TestRequestChunkedWhitespace(t *testing.T) {
 	var req Request
 

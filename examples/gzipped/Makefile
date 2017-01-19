@@ -1,5 +1,5 @@
 writer: clean
-	go get -u github.com/erikdubbelboer/fasthttp
+	go get -u github.com/godofdream/fasthttp
 	go build main.go
 
 clean:
