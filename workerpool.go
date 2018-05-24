@@ -153,6 +153,11 @@ func (wp *workerPool) getCh() *workerChan {
 	createWorker := false
 
 	wp.lock.Lock()
+	if wp.mustStop {
+		wp.lock.Unlock()
+		return nil
+	}
+	
 	ready := wp.ready
 	n := len(ready) - 1
 	if n < 0 {
