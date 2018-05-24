@@ -2422,12 +2422,21 @@ func TestServerConnectionClose(t *testing.T) {
 	}
 }
 
-func TestServerRequestNumAndTime(t *testing.T) {
+func TestServerRequestNumConnIDAndTime(t *testing.T) {
+	firstRequest := true
+	var connID uint64
 	n := uint64(0)
 	var connT time.Time
 	s := &Server{
 		Handler: func(ctx *RequestCtx) {
 			n++
+			if firstRequest {
+				connID = ctx.ConnID()
+				firstRequest = false
+			} else if ctx.ConnID() != connID {
+				t.Fatalf("unexpected connectionid: %d. Expecting %d", ctx.ConnID(), connID)
+			}
+
 			if ctx.ConnRequestNum() != n {
 				t.Fatalf("unexpected request number: %d. Expecting %d", ctx.ConnRequestNum(), n)
 			}
